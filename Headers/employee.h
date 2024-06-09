@@ -16,13 +16,13 @@ using namespace std;
 
 class Employee : public Worker{
 public:
-    //æ„é€ å‡½æ•°
+    //¹¹Ôìº¯Êı
     Employee(int id , string name , int dId);
 
-    //æ˜¾ç¤ºä¸ªäººä¿¡æ¯
+    //ÏÔÊ¾¸öÈËĞÅÏ¢
     virtual void showInfo();
 
-    //è·å–èŒå·¥å²—ä½ä¿¡æ¯
+    //»ñÈ¡Ö°¹¤¸ÚÎ»ĞÅÏ¢
     virtual string getDeptName();
 };
 
@@ -34,13 +34,13 @@ Employee::Employee(int id, string name, int dId) {
 }
 
 void Employee::showInfo() {
-    cout << "èŒå·¥ç¼–å·ï¼š " << this->m_Id
-         << " \tèŒå·¥å§“åï¼š " << this->m_Name
-         << " \tå²—ä½ï¼š" << this->getDeptName()
-         << " \tå²—ä½èŒè´£ï¼šå®Œæˆç»ç†äº¤ç»™çš„ä»»åŠ¡" << endl;
+    cout << "Ö°¹¤±àºÅ£º " << this->m_Id
+         << " \tÖ°¹¤ĞÕÃû£º " << this->m_Name
+         << " \t¸ÚÎ»£º" << this->getDeptName()
+         << " \t¸ÚÎ»Ö°Ôğ£ºÍê³É¾­Àí½»¸øµÄÈÎÎñ" << endl;
 
 }
 
 string Employee::getDeptName() {
-    return string("å‘˜å·¥");
+    return string("Ô±¹¤");
 }
