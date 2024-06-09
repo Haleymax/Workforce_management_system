@@ -1,3 +1,4 @@
 E:/learn/Workforce_management_system/cmake-build-debug/CMakeFiles/Workforce_management_system.dir
+E:/learn/Workforce_management_system/cmake-build-debug/CMakeFiles/workerManager.dir
 E:/learn/Workforce_management_system/cmake-build-debug/CMakeFiles/edit_cache.dir
 E:/learn/Workforce_management_system/cmake-build-debug/CMakeFiles/rebuild_cache.dir

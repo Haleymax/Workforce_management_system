@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "Workforce_management_system",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -41,6 +43,13 @@
 					"id" : "Workforce_management_system::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-Workforce_management_system-Debug-11f051fac32dfd7b765e.json",
 					"name" : "Workforce_management_system",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "workerManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-workerManager-Debug-a2f9e302380ee53bc0ab.json",
+					"name" : "workerManager",
 					"projectIndex" : 0
 				}
 			]
