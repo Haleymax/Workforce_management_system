@@ -13,18 +13,18 @@
 
 using namespace std;
 
-//èŒå·¥æŠ½è±¡ç±»
+//Ö°¹¤³éÏóÀà
 class Worker{
 public:
 
-    //æ˜¾ç¤ºä¸ªäººä¿¡æ¯
+    //ÏÔÊ¾¸öÈËĞÅÏ¢
     virtual void showInfo() = 0;
 
-    //è·å–å²—ä½åç§°
+    //»ñÈ¡¸ÚÎ»Ãû³Æ
     virtual string getDeptName() = 0;
 
 public:
-    int m_Id;  //èŒå·¥ç¼–å·
-    string m_Name;  //èŒå·¥å§“å
-    int m_DeptId;  //èŒå·¥æ‰€åœ¨éƒ¨é—¨
+    int m_Id;  //Ö°¹¤±àºÅ
+    string m_Name;  //Ö°¹¤ĞÕÃû
+    int m_DeptId;  //Ö°¹¤ËùÔÚ²¿ÃÅ
 };
