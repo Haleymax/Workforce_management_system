@@ -5,15 +5,31 @@
 #include "Headers/workerManager.h"
 #include "Headers/worker.h"
 #include "Headers/employee.h"
+#include "Headers/manager.h"
+#include "Headers/boss.h"
 
+
+void test()
+{
+    Worker * worker = NULL;
+    worker = new Employee(1, "张三", 1);
+    worker->showInfo();
+    delete worker;
+
+    worker = new Manager(2, "李四", 2);
+    worker->showInfo();
+    delete worker;
+
+    worker = new Boss(3, "王五", 3);
+    worker->showInfo();
+    delete worker;
+}
 
 
 int main(){
 
     //测试案例
-    Worker * worker = NULL;
-    worker = new Employee(1, "Haley", 1);
-    worker->showInfo();
+    //test();
 
     //实例化管理者对象
     WorkerManager w;
