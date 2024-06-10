@@ -9,6 +9,8 @@
 #include "employee.h"
 #include "manager.h"
 #include "boss.h"
+#include "fstream"
+#define FILENAME "empFile.txt"
 
 using namespace std;
 
@@ -25,6 +27,9 @@ public:
 
     //添加职工
     void Add_Emp();
+
+    //保存文件
+    void save();
 
 
 
@@ -136,10 +141,33 @@ void WorkerManager::Add_Emp() {
 
         //提示添加成功
         cout << "成功添加" << addNum << "名新职工！" << endl;
+
+        //将数据写入文件中
+        this->save();
     } else{
         cout << "输入有误" <<endl;
     }
 
     system("pause");
     system("cls");
+}
+
+
+//退出系统
+void WorkerManager::ExitSystem() {
+    cout << "欢迎下次使用" <<endl;
+    system("pause");
+    exit(0);
+}
+
+void WorkerManager::save() {
+    ofstream ofs;  //输入文件流
+    ofs.open(FILENAME,ios::out);
+
+    for (int i = 0; i < this->m_EmpNum; ++i) {
+        ofs << this->m_EmpArray[i]->m_Id << " "
+            << this->m_EmpArray[i]->m_Name << " "
+            << this->m_EmpArray[i]->m_DeptId << endl;
+    }
+    ofs.close();
 }
