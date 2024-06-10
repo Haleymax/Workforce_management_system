@@ -17,6 +17,7 @@ int main(){
 
     //实例化管理者对象
     WorkerManager w;
+    w.init_Emp();
 
     int choice = 0;  //用于存储用户的选项
 
@@ -24,6 +25,7 @@ int main(){
         w.Show_Menu();
         cout << "请输入您的选择 :" <<endl;
         cin >> choice;  //接受用户的选项
+
 
         switch (choice) {
             case 0:     //退出系统
@@ -33,6 +35,7 @@ int main(){
                 w.Add_Emp();
                 break;
             case 2:     //显示职工
+                w.show_Emp();
                 break;
             case 3:     //删除职工
                 break;

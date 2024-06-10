@@ -34,7 +34,11 @@ public:
     //统计职工人数
     int get_EmpNum();
 
+    //初始化员工
+    void init_Emp();
 
+    //显示职工信息
+    void show_Emp();
 
 
     ~WorkerManager();
@@ -85,7 +89,10 @@ WorkerManager::WorkerManager() {
     cout << "职工个数为 : " << num << endl;
     this->m_EmpNum = num; //更新职工人数
 
-
+    //根据职工数量创建数组
+    this->m_EmpArray = new Worker * [this->m_EmpNum];
+    //初始化职工数组
+    init_Emp();
 }
 
 WorkerManager::~WorkerManager() {
@@ -230,4 +237,46 @@ int WorkerManager::get_EmpNum() {
     ifs.close();
 
     return num;
+}
+
+
+void WorkerManager::init_Emp() {
+    ifstream ifs;
+    ifs.open(FILENAME,ios::in);
+
+    int id;
+    string name;
+    int dId;
+
+    int index = 0;
+    while (ifs >> id && ifs >> name && ifs >> dId){
+        Worker *worker = NULL;
+
+        //根据不同的部门id进行角色创建
+        if (dId == 1) {   //普通职工
+            worker = new Employee(id,name,dId);
+        } else if (dId == 2) {  //经理
+            worker = new Manager(id,name,dId);
+        } else if (dId == 3) { //老板
+            worker = new Boss(id,name,dId);
+        }
+
+        //将创建好的对象放入对象数组中
+        this->m_EmpArray[index++] = worker;
+
+    }
+
+}
+
+//显示职工
+void WorkerManager::show_Emp() {
+    if (this->m_FileIsEmpty)
+        cout << "文件不存在或记录为空" << endl;
+    else
+        for (int i = 0; i < m_EmpNum; ++i) {
+            //调用数组中每个对应职工的显示个人信息的函数
+            this->m_EmpArray[i]->showInfo();
+        }
+    system("pause");
+    system("cls");
 }
