@@ -40,6 +40,12 @@ public:
     //显示职工信息
     void show_Emp();
 
+    //删除职工
+    void Del_Emp();
+
+    //按照职工编号判断是否存在，若存在返回职工在数组中的位置，不存在返回-1
+    int IsExist(int id);
+
 
     ~WorkerManager();
 
@@ -277,6 +283,50 @@ void WorkerManager::show_Emp() {
             //调用数组中每个对应职工的显示个人信息的函数
             this->m_EmpArray[i]->showInfo();
         }
+    system("pause");
+    system("cls");
+}
+
+//判断职工是否存在
+int WorkerManager::IsExist(int id) {
+    int index = -1;
+    for (int i = 0; i < this->m_EmpNum; ++i) {
+        if (this->m_EmpArray[i]->m_Id == id){
+            index = i;
+            break;
+        }
+    }
+    return index;
+}
+
+
+//删除职工
+void WorkerManager::Del_Emp() {
+    if (this->m_FileIsEmpty)
+        cout << "文件不存在或记录为空 ! " << endl;
+    else{
+        //按职工编号删除
+        cout<< "请输入想要删除的职工号" << endl;
+
+        int id = 0;
+        cin >> id;
+
+
+        int index  = this->IsExist(id);
+
+        if (index != -1){  //表示需要删除的职工是存在的
+            for (int i = index; i < this->m_EmpNum -1; ++i) {
+                this->m_EmpArray[i] = this->m_EmpArray[i+1];
+                //需要删除的节点后面的元素依次向前移动覆盖即可实现删除
+            }
+            this->m_EmpNum--;
+
+            this->save(); //删除数据后同步到文件中
+            cout << "删除成功!" <<endl;
+        } else{
+            cout << "删除失败！"<< endl;
+        }
+    }
     system("pause");
     system("cls");
 }

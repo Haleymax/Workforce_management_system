@@ -38,6 +38,7 @@ int main(){
                 w.show_Emp();
                 break;
             case 3:     //删除职工
+                w.Del_Emp();
                 break;
             case 4:     //修改职工
                 break;
