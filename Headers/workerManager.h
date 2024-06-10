@@ -46,6 +46,8 @@ public:
     //按照职工编号判断是否存在，若存在返回职工在数组中的位置，不存在返回-1
     int IsExist(int id);
 
+    //修改职工
+    void Mod_Emp();
 
     ~WorkerManager();
 
@@ -249,10 +251,11 @@ int WorkerManager::get_EmpNum() {
 void WorkerManager::init_Emp() {
     ifstream ifs;
     ifs.open(FILENAME,ios::in);
-
+    cout<<"初始化" << endl;
     int id;
     string name;
     int dId;
+    this->m_FileIsEmpty = false;
 
     int index = 0;
     while (ifs >> id && ifs >> name && ifs >> dId){
@@ -327,6 +330,67 @@ void WorkerManager::Del_Emp() {
             cout << "删除失败！"<< endl;
         }
     }
+    system("pause");
+    system("cls");
+}
+
+void WorkerManager::Mod_Emp() {
+    if (this->m_FileIsEmpty)
+        cout<< "文件不存在或记录为空!" <<endl;
+    else{
+        cout<< "请输入修改职工的编号" <<endl;
+        int id;
+        cin >> id;
+
+        int ret = this->IsExist(id);
+        if (ret != -1){   //表示需要修改的职工存在
+
+            delete this->m_EmpArray[ret];  //删除原来的职工信息
+
+            int newId = 0;
+            string newName = "";
+            int dSelect = 0;
+
+            cout << "查到: " << id << "号员工，请输入新职工号" << endl;
+            cin >> newId;
+
+            cout << "请输入新姓名 ：" << endl;
+            cin >> newName;
+
+            cout << "请输入岗位 ： " << endl;
+            cout << "1、普通职工" <<endl;
+            cout << "2、经理" <<endl;
+            cout << "3、老板" <<endl;
+            cin >> dSelect;
+
+            Worker * worker = NULL;
+            switch (dSelect) {
+                case 1:
+                    worker = new Employee(newId,newName,dSelect);
+                    break;
+                case 2:
+                    worker = new Manager(newId,newName,dSelect);
+                    break;
+                case 3:
+                    worker = new Boss(newId,newName,dSelect);
+                    break;
+                default:
+                    break;
+            }
+
+            //更新数据到数组中
+            this->m_EmpArray[ret] = worker;
+
+            cout << "修改成功!" <<endl;
+
+            //保存数据
+            this->save();
+        } else{
+            cout << "查无此人" << endl;
+        }
+
+    }
+
     system("pause");
     system("cls");
 }

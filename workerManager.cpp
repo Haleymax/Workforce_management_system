@@ -41,6 +41,7 @@ int main(){
                 w.Del_Emp();
                 break;
             case 4:     //修改职工
+                w.Mod_Emp();
                 break;
             case 5:     //查找职工
                 break;
