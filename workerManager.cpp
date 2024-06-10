@@ -9,22 +9,6 @@
 #include "Headers/boss.h"
 
 
-void test()
-{
-    Worker * worker = NULL;
-    worker = new Employee(1, "张三", 1);
-    worker->showInfo();
-    delete worker;
-
-    worker = new Manager(2, "李四", 2);
-    worker->showInfo();
-    delete worker;
-
-    worker = new Boss(3, "王五", 3);
-    worker->showInfo();
-    delete worker;
-}
-
 
 int main(){
 
@@ -46,6 +30,7 @@ int main(){
                 w.ExitSystem();
                 break;
             case 1:     //增加员工
+                w.Add_Emp();
                 break;
             case 2:     //显示职工
                 break;
