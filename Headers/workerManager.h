@@ -31,6 +31,9 @@ public:
     //保存文件
     void save();
 
+    //统计职工人数
+    int get_EmpNum();
+
 
 
 
@@ -40,14 +43,49 @@ public:
     int m_EmpNum; //职工人数
 
     Worker ** m_EmpArray;  //记录职工数组指针
+
+    bool m_FileIsEmpty; //标志文件是否为空
 };
 
 WorkerManager::WorkerManager() {
-    //初始化属性
-    this->m_EmpNum = 0;
 
-    //初始化数组指针
-    this->m_EmpArray = NULL;
+    ifstream ifs;  //输出文件流
+    ifs.open(FILENAME,ios::in);
+
+    //文件不存在情况
+    if (!ifs.is_open()){
+        cout << "文件不存在" << endl;
+        //初始化人数
+        this->m_EmpNum = 0;
+
+        //初始化数组指针
+        this->m_EmpArray = NULL;
+
+        //初始化文件为空标志
+        this->m_FileIsEmpty = true;
+
+        ifs.close();
+        return;
+    }
+
+    //文件存在，且没有记录
+    char ch;
+    ifs >> ch;
+    if (ifs.eof()){
+        cout << "文件为空!" << endl;
+        this->m_EmpNum = 0;
+        this->m_FileIsEmpty = true;
+        this->m_EmpArray = NULL;
+        ifs.close();
+        return;
+    }
+
+    //文件存在且有数据，获取人数
+    int num = this->get_EmpNum();
+    cout << "职工个数为 : " << num << endl;
+    this->m_EmpNum = num; //更新职工人数
+
+
 }
 
 WorkerManager::~WorkerManager() {
@@ -139,6 +177,9 @@ void WorkerManager::Add_Emp() {
         //更新职工数量
         this->m_EmpNum = newSize;
 
+        //更新职工不为空的标志
+        this->m_FileIsEmpty = false;
+
         //提示添加成功
         cout << "成功添加" << addNum << "名新职工！" << endl;
 
@@ -170,4 +211,23 @@ void WorkerManager::save() {
             << this->m_EmpArray[i]->m_DeptId << endl;
     }
     ofs.close();
+}
+
+int WorkerManager::get_EmpNum() {
+    ifstream ifs;
+    ifs.open(FILENAME,ios::in);
+
+    int id;
+    string name;
+    int dId;
+
+    int num = 0;
+
+    while (ifs >> id && ifs >> name && ifs >> dId){
+        //记录人数
+        num++;
+    }
+    ifs.close();
+
+    return num;
 }
