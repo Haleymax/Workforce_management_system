@@ -47,6 +47,7 @@ int main(){
                 w.Find_Emp();
                 break;
             case 6:     //排序职工
+                w.Sort_Emp();
                 break;
             case 7:     //清空文档
                 break;
